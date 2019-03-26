@@ -17,6 +17,12 @@
             #chart4{padding:10px;}
             #button5{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
             #chart5{padding:10px;}
+			
+			svg {
+				margin-top: 10px;
+				overflow: show;
+			}
+			
 		</style>
 	</head>
     <div id="button1">button</div>
@@ -99,6 +105,7 @@
                         return xScale(d.borough)+padding*3
                     })
                     .attr("r",5)
+					.attr("fill","red")
                 
                 svg.selectAll(".label")
                     .data(data)
@@ -138,6 +145,14 @@
                             .attr("cx",function(d,i){
                                 return xScale(d.borough)+padding*3//still catagorized by borough
                             })
+							.attr("r",function(d,i){
+								return Math.floor(Math.random() * 6)+5
+							})
+							.attr("fill",function(d,i){
+								var redColor = Math.floor(Math.random() * 255)
+								var greenColor = Math.floor(Math.random() * 255)
+								var blueColor = Math.floor(Math.random() * 255)
+							})
 			 			  
 
                         
@@ -145,6 +160,7 @@
                         .data(data)
                             .transition()
                             .duration(1000)
+							.delay(500)
                             .text(function(d){
                                 return d[column]})
                             .attr("y",function(d){
